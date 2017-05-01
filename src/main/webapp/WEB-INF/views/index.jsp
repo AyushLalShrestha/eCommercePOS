@@ -30,6 +30,7 @@
 
                     <a href=" <c:url value="/customer" />" target="_blank" class="btn btn-primary"><span class="glyphicon glyphicon-user"> Manage Customers</span></a>
                     <a href=" <c:url value="/product" />" target="_blank" class="btn btn-info"><span class="glyphicon glyphicon-shopping-cart"> Products Catalogue</span></a>
+                    <input type="button" class="btn btn-primary" id="showModal" ng-click="displayModal()">Show Modal</button>
                     <div>
                         <form action=" <c:url value="/newsale" /> " method="post">
                             <br> <div><input type="text" ng-model="productId" name="productId" placeholder="Product ID" required class="form-control" /></div> 
@@ -66,12 +67,39 @@
                 </c:forEach>  
             </table> 
 
+            <!-- Modal -->
+            <div id="ayushModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Modal Header</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Some text in the modal.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
         </div>
     </body>
     <script>
         var app = angular.module('app', []);
 
         app.controller("ctrl", function ($scope, $http) {
+
+            displayModal = function () {
+                alert("function running !!");
+                $("#ayushModal").modal("show");
+            };
 
             getNetTotal = function () {
                 $http.get("http://localhost:8080/ecommercepos/getTotal/" + $scope.productId + "?quantity=" + $scope.qty).then(function (response) {
@@ -82,16 +110,21 @@
                     alert($scope.nettotal);
                 });
             };
-            
+
             isValidCustomer = function () {
                 $http.get("http://localhost:8080/ecommercepos/customer/isvalidcustomer?customerId=" + $scope.customerId).then(function (response) {
                     $scope.customerValidity = response.data;
-                    alert($scope.customerValidity);
-                }
-                , function (response) {
-                    $scope.customerValidity = "Something Went Wrong !!";
-                    alert($scope.customerValidity);
-                });
+                    if ($scope.customerValidity === 1) {
+                        alert("Customer does Exist :)");
+                    } else {
+                        alert("Customer does not Exist, make a new Customer");
+                    }
+
+                },
+                        function (response) {
+                            $scope.customerValidity = "Something Went Wrong !!";
+                            alert($scope.customerValidity + " - " + response.data);
+                        });
             };
 
 

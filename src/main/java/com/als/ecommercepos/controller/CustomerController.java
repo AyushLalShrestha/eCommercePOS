@@ -35,12 +35,12 @@ public class CustomerController {
     
      @RequestMapping(value = "/isvalidcustomer",method = RequestMethod.GET)
     @ResponseBody
-     public String isValidCustomer(HttpServletRequest req) {
+     public int isValidCustomer(HttpServletRequest req) {
         String customerId = req.getParameter("customerId");
         if(customerDAO.getCustomerById(customerId) != null){
-            return "ValidCustomer";
+            return 1;
         }
-        return "InvalidCustomer";
+        return 0;
     
        }
 }

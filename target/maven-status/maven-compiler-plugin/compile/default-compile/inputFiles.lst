@@ -1,7 +1,15 @@
+D:\Java Projects\eCommercePOS\src\main\java\com\als\ecommercepos\controller\ProductController.java
+D:\Java Projects\eCommercePOS\src\main\java\com\als\ecommercepos\entity\Product.java
+D:\Java Projects\eCommercePOS\src\main\java\com\als\ecommercepos\entity\Company.java
+D:\Java Projects\eCommercePOS\src\main\java\com\als\ecommercepos\dao\impl\CustomerDAOImpl.java
 D:\Java Projects\eCommercePOS\src\main\java\com\als\ecommercepos\entity\Customer.java
 D:\Java Projects\eCommercePOS\src\main\java\com\als\ecommercepos\entity\Sale.java
-D:\Java Projects\eCommercePOS\src\main\java\com\als\ecommercepos\entity\Product.java
+D:\Java Projects\eCommercePOS\src\main\java\com\als\ecommercepos\dto\DTOEntity\DTOSale.java
+D:\Java Projects\eCommercePOS\src\main\java\com\als\ecommercepos\dao\ProductDAO.java
+D:\Java Projects\eCommercePOS\src\main\java\com\als\ecommercepos\dto\DTOSaleDAOImpl.java
+D:\Java Projects\eCommercePOS\src\main\java\com\als\ecommercepos\controller\CustomerController.java
+D:\Java Projects\eCommercePOS\src\main\java\com\als\ecommercepos\dao\impl\ProductDAOImpl.java
 D:\Java Projects\eCommercePOS\src\main\java\com\als\ecommercepos\controller\DefaultController.java
 D:\Java Projects\eCommercePOS\src\main\java\com\als\ecommercepos\dao\SaleDAO.java
-D:\Java Projects\eCommercePOS\src\main\java\com\als\ecommercepos\entity\Company.java
 D:\Java Projects\eCommercePOS\src\main\java\com\als\ecommercepos\dao\impl\SaleDAOImpl.java
+D:\Java Projects\eCommercePOS\src\main\java\com\als\ecommercepos\dao\CustomerDAO.java

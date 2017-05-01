@@ -7,6 +7,8 @@ package com.als.ecommercepos.controller;
 
 import com.als.ecommercepos.dao.ProductDAO;
 import com.als.ecommercepos.dao.SaleDAO;
+import com.als.ecommercepos.dto.DTOEntity.DTOSale;
+import com.als.ecommercepos.dto.DTOSaleDAOImpl;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,6 +33,10 @@ public class DefaultController {
      @Autowired
     private ProductDAO productDAO;
 
+     
+    @Autowired
+    private DTOSaleDAOImpl dtoSaleDAOImpl;        
+     
     @RequestMapping(method = RequestMethod.GET)
     public String defaultIndex(Model model) {
         try {
@@ -77,5 +83,18 @@ public class DefaultController {
            
        }
     }
+    
+    @RequestMapping(value = "/api/allsales", method = RequestMethod.GET)
+    @ResponseBody
+    public List<DTOSale> getSaleREST(HttpServletRequest req) {
+        List<DTOSale> dtoSaleList = dtoSaleDAOImpl.getAllDTOSalesAPI();
+        return dtoSaleList;
+    }
+    
+    @RequestMapping(value = "/ngapitest", method = RequestMethod.GET)
+    public String getSaleRESTIndex(HttpServletRequest req) {
+        return "ngindex";
+    }
+    
     
 }
