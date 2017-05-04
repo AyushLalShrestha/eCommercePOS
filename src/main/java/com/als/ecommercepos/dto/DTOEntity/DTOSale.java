@@ -6,12 +6,12 @@ public class DTOSale {
 
     private int saleId, quantity, total, pricePerPiece;
     private String customerId, productId, customerName, productName, customerContact;
-    private Date saleDate;
+    private String saleDate;
     
     public DTOSale() {
     }
 
-    public DTOSale(int saleId, int quantity, int total, int pricePerPiece, String customerId, String productId, String customerName, String customerContact, String productName, Date saleDate) {
+    public DTOSale(int saleId, int quantity, int total, int pricePerPiece, String customerId, String productId, String customerName, String customerContact, String productName, String saleDate) {
         this.saleId = saleId;
         this.quantity = quantity;
         this.total = total;
@@ -96,11 +96,11 @@ public class DTOSale {
         this.productName = productName;
     }
 
-    public Date getSaleDate() {
+    public String getSaleDate() {
         return saleDate;
     }
 
-    public void setSaleDate(Date saleDate) {
+    public void setSaleDate(String saleDate) {
         this.saleDate = saleDate;
     }
 

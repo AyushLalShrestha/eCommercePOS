@@ -9,12 +9,13 @@ import java.util.List;
 import com.als.ecommercepos.entity.Sale;
 
 public interface SaleDAO {
+
     List<Sale> getAllSales();
+
+    List<Sale> getSalesByDay(String year, String month,String day);
 
     Sale getSaleById(int id);
 
     boolean insertNewSale(Sale sale);
 
-    boolean deleteSalesRecord(int id);
-            
 }

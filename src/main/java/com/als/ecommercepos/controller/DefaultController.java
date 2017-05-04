@@ -108,26 +108,35 @@ public class DefaultController {
         try {
             System.out.println(s.getCustomerId().getName() + " -------------------");
             System.out.println(customerId + productId + req.getParameter("quantity") + "  - - - - - - - - - ------------------------------------------------------------------------------------------");
-            
+
             Customer saleCustomer = customerDAO.getCustomerById(customerId);
             Product saleProduct = productDAO.getProductById(productId);
-            int quantity =  Integer.parseInt(req.getParameter("quantity")) ;
+            int quantity = Integer.parseInt(req.getParameter("quantity"));
             int total = quantity * saleProduct.getPrice();
             Sale sale = new Sale();
-                sale.setCustomerId(saleCustomer);
-                sale.setProductId(saleProduct);
-                sale.setQuantity(quantity);
-                sale.setTotal(total);
-                sale.setSaleDate(new Date());
-                sale.setSaleId(saleDAO.getAllSales().size() + 1);
-                if(saleDAO.insertNewSale(sale)){
-                    return 1;
-                };
-                    
-           } catch (Exception ex) {
+            sale.setCustomerId(saleCustomer);
+            sale.setProductId(saleProduct);
+            sale.setQuantity(quantity);
+            sale.setTotal(total);
+            sale.setSaleDate(new Date());
+            System.out.println("----------------------------" + new Date());
+            sale.setSaleId(saleDAO.getAllSales().size() + 1);
+            if (saleDAO.insertNewSale(sale)) {
+                return 1;
+            }
+
+        } catch (Exception ex) {
             return -1;
         }
         return -1;
+    }
+
+    @RequestMapping(value = "/api/saleofday/{year}/{month}/{day}", method = RequestMethod.GET)
+    @ResponseBody
+    public List<DTOSale> getDaySale(HttpServletRequest req, @PathVariable("year") int year,@PathVariable("month") int month,@PathVariable("day") int day ) {
+        List<DTOSale> dtoSaleList = dtoSaleDAOImpl.getDaySalesAPI(year, month-1, day);
+        System.out.println("Request for date : " + year+":"+month+":"+day);
+        return dtoSaleList;
     }
 
 }

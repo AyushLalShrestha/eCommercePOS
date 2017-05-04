@@ -48,8 +48,10 @@ public class SaleDAOImpl implements SaleDAO {
     }
 
     @Override
-    public boolean deleteSalesRecord(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Sale> getSalesByDay(String year, String month, String day) {
+        session = sessionFactory.openSession();
+        List<Sale> saleList = session.createQuery("SELECT s FROM Sale s WHERE s.saleDate = 2017-03-18" ).list();
+        return saleList;
     }
 
 }

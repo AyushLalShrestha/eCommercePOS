@@ -13,7 +13,7 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-    <script src="https://code.angularjs.org/1.6.1/angular.min.js"></script>   
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>   
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
@@ -34,8 +34,9 @@
                     </button>
                     <br> <br>      
                     <label>Order By</label>
-                    <select class="dropdown" ng-model="odBy">
-                        <option value="Name">Name</option>
+                    <select class="dropdown" ng-model="odBy" class="dropdown dropdown-menu">
+                        <option value="saleDate">Date</option>
+                        <option value="customerName">Name</option>
                         <option value="productName">Product</option>
                         <option value="customerName">Customer</option>
                     </select>
@@ -98,12 +99,34 @@
             </div>  
         </div>
     </body>
+    
     <script>
         var app = angular.module('app', []);
 
-        app.controller("ctrl", function ($scope, $http) {
-            $scope.sales;
+        app.service("getSalesService", function ($http) {
+            this.getAllSales = function () {
+                return $http.get("http://localhost:8080/ecommercepos/api/allsales/");
+            };
+
+
+        });
+
+        app.controller("ctrl", function ($scope, $http, getSalesService) {
+
             $scope.formData = {};
+            alert("Controller Loaded");
+
+            getSalesService.getAllSales().then(function (response) {
+                $scope.sales = response.data;
+                console.log(response.data);
+            }
+            , function (response) {
+                $scope.sales = null;
+                alert("API call failure !!");
+            });
+
+
+
 
             $scope.processForm = function () {
                 $http({
@@ -120,7 +143,7 @@
                                 $scope.formData.customerId = "";
                                 $scope.formData.quantity = null;
                                 $scope.formData.total = null;
-                                
+
                             } else {
                                 alert("Did not insert");
                             }
@@ -131,16 +154,6 @@
 
 
 
-            $http.get("http://localhost:8080/ecommercepos/api/allsales/").then(function (response) {
-                $scope.sales = response.data;
-                console.log(response.data);
-            }
-            , function (response) {
-                $scope.sales = null;
-                alert("API call failure !!");
-            });
-
-
 
 
             getNetTotal = function () {
@@ -149,6 +162,7 @@
                 }
                 , function (response) {
                     $scope.formData.total = -1;
+                    console.log(response.data);
                 });
             };
 
