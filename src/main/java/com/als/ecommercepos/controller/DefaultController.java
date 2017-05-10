@@ -133,9 +133,16 @@ public class DefaultController {
 
     @RequestMapping(value = "/api/saleofday/{year}/{month}/{day}", method = RequestMethod.GET)
     @ResponseBody
-    public List<DTOSale> getDaySale(HttpServletRequest req, @PathVariable("year") int year,@PathVariable("month") int month,@PathVariable("day") int day ) {
-        List<DTOSale> dtoSaleList = dtoSaleDAOImpl.getDaySalesAPI(year, month-1, day);
-        System.out.println("Request for date : " + year+":"+month+":"+day);
+    public List<DTOSale> getDaySale(HttpServletRequest req, @PathVariable("year") int year, @PathVariable("month") int month, @PathVariable("day") int day) {
+        List<DTOSale> dtoSaleList = dtoSaleDAOImpl.getDaySalesAPI(year, month - 1, day);
+        System.out.println("Request for date : " + year + ":" + month + ":" + day);
+        return dtoSaleList;
+    }
+
+    @RequestMapping(value = "/api/saleofmonth/{year}/{month}", method = RequestMethod.GET)
+    @ResponseBody
+    public List<DTOSale> getMonthSaleAPI(HttpServletRequest req, @PathVariable("year") String year, @PathVariable("month") String month) {
+        List<DTOSale> dtoSaleList = dtoSaleDAOImpl.getMonthSalesAPI(year, month);
         return dtoSaleList;
     }
 

@@ -55,9 +55,9 @@ public class DTOSaleDAOImpl {
             int yr = cal.get(Calendar.YEAR);
             int mnth = cal.get(Calendar.MONTH);
             int dy = cal.get(Calendar.DAY_OF_MONTH);
-            int no = (int)year + (int)month + (int)day;
+            int no = (int) year + (int) month + (int) day;
             //System.out.println(yr+mnth+dy + " -----------------" + no);
-            if (yr == year && mnth == month && dy == day   ) {
+            if (yr == year && mnth == month && dy == day) {
                 System.out.println(yr + " : " + mnth + " : " + dy + "---------------------");
                 DTOSale dtoSale = new DTOSale();
                 dtoSale.setSaleId(sale.getSaleId());
@@ -73,6 +73,26 @@ public class DTOSaleDAOImpl {
                 dtoSaleList.add(dtoSale);
             }
 
+        }
+        return dtoSaleList;
+    }
+
+    public List<DTOSale> getMonthSalesAPI(String year, String month) {
+        List<Sale> saleList = saleDAO.getSalesByDay(year, month, "17");
+        List<DTOSale> dtoSaleList = new ArrayList<>();
+        for (Sale sale : saleList) {
+            DTOSale dtoSale = new DTOSale();
+            dtoSale.setSaleId(sale.getSaleId());
+            dtoSale.setCustomerId(sale.getCustomerId().getCustomerId());
+            dtoSale.setCustomerName(sale.getCustomerId().getName());
+            dtoSale.setCustomerContact(sale.getCustomerId().getContactNo());
+            dtoSale.setProductId(sale.getProductId().getProductId());
+            dtoSale.setProductName(sale.getProductId().getName());
+            dtoSale.setPricePerPiece(sale.getProductId().getPrice());
+            dtoSale.setQuantity(sale.getQuantity());
+            dtoSale.setTotal(sale.getTotal());
+            dtoSale.setSaleDate(sale.getSaleDate().toString());
+            dtoSaleList.add(dtoSale);
         }
         return dtoSaleList;
     }

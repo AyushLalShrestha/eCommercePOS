@@ -9,17 +9,12 @@
         <title>POS angular</title>
     </head>
 
-    <script src="http://code.jquery.com/jquery.min.js"></script>   
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="<c:url value="/static/js/jquery.min.js" />"></script>   
+    <script src="<c:url value="/static/js/bootstrapjs/bootstrap.min.js" />" ></script>
+    <script src="<c:url value="/static/js/angularjs/angular.min.js" />"></script>   
+    <link rel="stylesheet" href=" <c:url value="/static/css/bootstrap.min.css" /> " />
+    <link rel="stylesheet" href=" <c:url value="/static/css/bootstrap-theme.min.css" />"   />
 
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>   
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <body>
         <div class="container">
             <div ng-app="app">
