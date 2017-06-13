@@ -2,6 +2,7 @@ com\als\ecommercepos\entity\Company.class
 com\als\ecommercepos\dao\impl\SaleDAOImpl.class
 com\als\ecommercepos\dto\DTOSaleDAOImpl.class
 com\als\ecommercepos\dao\impl\ProductDAOImpl.class
+com\als\ecommercepos\controller\RestTestController.class
 com\als\ecommercepos\dao\SaleDAO.class
 com\als\ecommercepos\controller\DefaultController.class
 com\als\ecommercepos\dao\ProductDAO.class
